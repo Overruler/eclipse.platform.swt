@@ -522,9 +522,11 @@ void setMenu (Menu menu) {
 		long /*int*/ poa = createShellLinkArray (items, directory);
 		if (poa != 0) {
 			
-			/*ICustomDestinationList::SetAppID*/
-			hr = OS.VtblCall (3, pDestList, buffer);
-			if (hr != OS.S_OK) error (SWT.ERROR_INVALID_ARGUMENT);
+			if (appName != null && !"SWT".equalsIgnoreCase (appName)) {
+				/*ICustomDestinationList::SetAppID*/
+				hr = OS.VtblCall (3, pDestList, buffer);
+				if (hr != OS.S_OK) error (SWT.ERROR_INVALID_ARGUMENT);
+			}
 			
 			/*ICustomDestinationList::BeginList*/
 			int [] cMaxSlots = new int [1];
